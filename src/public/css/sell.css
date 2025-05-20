@@ -1,0 +1,101 @@
+.sell-form {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+}
+
+.sell-form__heading h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 1.8rem;
+}
+
+.sell-form__group,
+.sell-form__group-content {
+    margin-bottom: 20px;
+}
+
+.sell-form__content-title {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.sell-form__input-img input[type="file"] {
+    width: 100%;
+    border: 2px dashed #ccc;
+    padding: 30px;
+    text-align: center;
+    background-color: #f9f9f9;
+    cursor: pointer;
+}
+
+.sell-form__category {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.category__item {
+    display: none;
+}
+
+.category__item-label{
+    margin-right: 10px;
+    margin-bottom: 15px;
+}
+.category__item-box {
+    padding: 8px 15px;
+    border: 2px solid #FF5655;
+    border-radius: 20px;
+    background-color: transparent;
+    color: #FF5655;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.category__item-label input:checked + .category__item-box{
+background-color: #FF5655;
+    color: #fff;
+}
+
+.category__item:hover {
+    background-color: #ffecec;
+}
+
+
+
+.form__input-text input,
+.form__input-text textarea,
+.sell-form__group-content select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fefefe;
+    font-size: 1rem;
+}
+
+.form__button-submit {
+    display: block;
+    width: 100%;
+    background-color: #f44336;
+    color: #fff;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.form__button-submit:hover {
+    background-color: #d32f2f;
+}
+
+.form__error {
+    color: #f44336;
+    font-size: 0.85rem;
+    margin-top: 5px;
+}

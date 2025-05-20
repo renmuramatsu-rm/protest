@@ -1,0 +1,282 @@
+
+body {
+    height: 100%;
+    min-height: 200vh;
+}
+
+.form {
+    display: flex;
+    max-width: 1000px;
+    width: 90vw;
+    margin: 0 auto;
+    border: 2px solid #ccc;
+    padding: 20px;
+    background-color: #fff;
+}
+
+.show-form__img {
+    width: 50%;
+    text-align: center;
+}
+
+.show-item__img {
+    width: 50%;
+    max-width: 300px;
+    height: auto;
+    border: 1px solid #ddd;
+    padding: 10px;
+    background-color: #f8f8f8;
+}
+
+.show-form {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+}
+
+.show-form__item-name {
+    width: 100%;
+    font-size: 45px;
+    font-weight: 700;
+    border: none;
+    margin: 0 auto;
+}
+
+.show-form__item-brandname {
+    width: 100%;
+    font-size: 20px;
+    font-weight: 400;
+    border: none;
+}
+
+.show-form__item-price {
+    width: 100%;
+    font-size: 30px;
+    font-weight: 400;
+}
+
+.show-form__content {
+    width: 100%;
+    font-size: 36px;
+    line-height: 100%;
+    font-weight: 700;
+    padding: 10px 0px;
+}
+
+.show-form__content-item {
+    width: 100%;
+    font-size: 24px;
+    line-height: 100%;
+    font-weight: 400;
+}
+
+.show-form__info {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px 0px;
+}
+
+.show-form__info-content {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+    padding: 5px 20px;
+    margin-left: 0;
+}
+
+.show-form__info-category {
+    display: flex;
+    justify-content: space-between;
+    width: 50%;
+    align-items: center;
+    padding: 5px 20px;
+    margin-left: 0;
+}
+
+.info-content__condition {
+    font-size: 18px;
+    font-weight: 400;
+    text-align: left;
+}
+
+.category__item-label {
+    background-color: #D9D9D9;
+    padding: 5px 20px;
+    border-radius: 15px;
+    margin-left: 10px;
+}
+
+.info-content__value {
+    display: flex;
+    gap: 10px;
+}
+
+.show-form__info-title {
+    width: 100%;
+    font-size: 36px;
+    line-height: 100%;
+    font-weight: 700;
+    padding: 20px 0px;
+}
+
+.info-content__label {
+    font-size: 24px;
+    line-height: 100%;
+    font-weight: 700;
+}
+
+.show-form__comment-title {
+    color: #5F5F5F;
+    font-size: 36px;
+    line-height: 100%;
+    padding: 10px 0px;
+}
+
+.show-form__comment input {
+    width: 100%;
+    border: none;
+    background-color: #f8f8f8;
+    padding: 10px;
+    pointer-events: none;
+    border-radius: 5px;
+}
+
+.show-form__purchase-submit {
+    width: 100%;
+    height: 56px;
+    background-color: #FF5555;
+    padding: 12px 0;
+    border: none;
+    border-radius: 5px;
+    font-size: 30px;
+    cursor: pointer;
+    text-align: center;
+    align-items: center;
+}
+
+.show-form__purchase-submit-a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.show-form__info {
+    display: block;
+}
+
+.like-comment__btn {
+    display: flex;
+    justify-content: space-between;
+    width: 40%;
+}
+
+.btn-success {
+    border: none;
+    background: none;
+}
+
+
+
+.btn-success__img {
+    width: 40%;
+}
+
+.btn-success__count {
+    padding-bottom: 20px;
+    width: 40%;
+    text-align: center;
+
+}
+
+.btn-secondary {
+    border: none;
+    background: none;
+}
+
+.btn-secondary__img {
+    width: 40%;
+}
+
+.comment-btn {
+    border: none;
+    background: none;
+}
+
+.comment-btn__img {
+    width: 60%;
+}
+
+.comment-btn__count {
+    padding-bottom: 20px;
+    width: 40%;
+    text-align: center;
+
+}
+
+.comment-btn__img {
+    width: 40%;
+}
+
+.show-form__comment-input {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.show-form__comment-input__title {
+    color: #000000;
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.show-form__comment-input__textarea {
+    margin-bottom: 20px;
+}
+
+.show-form__comment-input__button {
+    width: 100%;
+    height: 56px;
+    background-color: #FF5555;
+    color: #fff;
+    padding: 12px 0;
+    border: none;
+    border-radius: 5px;
+    font-size: 25px;
+    cursor: pointer;
+    margin: 10px 0px;
+    text-align: center;
+    align-items: center;
+}
+
+.comment-user {
+    flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+}
+
+.user-name {
+    font-weight: 700;
+    font-size: 30px;
+
+}
+
+.user-img {
+    width: 40%;
+    height: 40%;
+
+}
+
+.user-comment {
+    font-weight: 300;
+    font-size: 20px;
+    margin-left: 0;
+
+}
+
+.form__error {
+    font-size: 20px;
+    height: 30px;
+    color: #ff0000;
+    text-align: left;
+}

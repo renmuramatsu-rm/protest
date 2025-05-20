@@ -1,0 +1,80 @@
+.header {
+    background: #000;
+}
+
+.header__inner {
+    margin: 0 auto;
+    padding: 20px 15px;
+    max-width: 1540px;
+}
+
+.header-utilities {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header-search{
+    width: 30%;
+}
+.coachtech__img{
+    width: 60%;
+}
+
+.header__logo {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 24px;
+}
+
+.header-utilities nav {
+    width: auto;
+}
+
+.header-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    list-style: none;
+}
+
+.header-nav__item {
+    background: none;
+    color: #fff;
+}
+
+.header-nav__button-logout {
+    border: none;
+    background: transparent;
+    color: #fff ;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.header-nav__button-login {
+    border: none;
+    background: transparent;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.header-nav__button-mypage {
+    border: none;
+    background: transparent;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.header-nav__button-sell {
+    border: none;
+    background: transparent;
+    background-color: #fff;
+    color: #000;
+    font-size: 16px;
+    cursor: pointer;
+}
