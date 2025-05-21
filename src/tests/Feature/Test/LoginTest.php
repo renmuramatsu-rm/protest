@@ -5,22 +5,71 @@ namespace Tests\Feature\Test;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
+use App\Models\User;
 
 class LoginTest extends TestCase
 {
-    /**
-     * A basic feature test example.
-     */
-    public function test_login(): void
+    use RefreshDatabase;
+
+    public function test_login_email()
     {
-        $response = $this->followingRedirects()->post(
-            '/login',
+        $response = $this->post('/login', [
+            'email' => '',
+            'password' => 'password',
+        ]);
+
+        $response->assertRedirect('/');
+        $response->assertSessionHasErrors(
             [
+                'email' => 'メールアドレスを入力してください',
+            ]
+        );
+    }
 
-                'password' => 'password123',
-            ]);
+    public function test_login_password()
+    {
+        $response = $this->post('/login', [
+            'email' => 'test@example.com',
+            'password' => '',
+        ]);
 
-        // dd($response->getContent());
-        $response->assertSee('パスワードを入力してください');
+        $response->assertRedirect('/');
+        $response->assertSessionHasErrors([
+            'password' => 'パスワードを入力してください',
+        ]);
+    }
+
+    public function test_login_wrong_password()
+    {
+        $user = User::factory()->create([
+            'email' => 'user@example.com',
+            'password' => bcrypt('correct-password'),
+        ]);
+
+        $response = $this->post('/login', [
+            'email' => 'user@example.com',
+            'password' => 'wrong-password',
+        ]);
+
+        $response->assertRedirect('/');
+        $response->assertSessionHasErrors([
+            'email' => 'ログイン情報が登録されていません',
+        ]);
+    }
+
+    public function test_login()
+    {
+        $user = User::factory()->create([
+            'email' => 'user@example.com',
+            'password' => bcrypt('correct-password'),
+        ]);
+
+        $response = $this->post('/login', [
+            'email' => 'user@example.com',
+            'password' => 'correct-password',
+        ]);
+
+        $this->assertAuthenticatedAs($user);
+        $response->assertRedirect('/');
     }
 }

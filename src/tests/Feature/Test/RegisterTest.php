@@ -5,8 +5,7 @@ namespace Tests\Feature\Test;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Facades\App;
+use App\Models\User;
 
 
 class RegisterTest extends TestCase
@@ -17,70 +16,90 @@ class RegisterTest extends TestCase
 
     use RefreshDatabase;
 
-    public function test_RegisterName(): void
+    public function test_register_name()
     {
-        // 名前が入力されていない場合、バリデーションメッセージが表示される
         $response = $this->post('/register', [
-
-            'email'                 => 'test@example.com',
-            'password'              => 'password123',
+            'name' => '',
+            'email' => 'test@example.com',
+            'password' => 'password123',
             'password_confirmation' => 'password123',
-        ])->followingRedirects();
+        ]);
 
-        $response->assertStatus(302);
-        $response->assertRedirect('/register');
+        $response->assertSessionHasErrors([
+            'name' => 'お名前を入力してください',
+        ]);
     }
 
-    // public function test_RegisterMail(): void
-    // {
-    //     // メールアドレスが入力されていない場合、バリデーションメッセージが表示される
-    //     $response = $this->followingRedirects()->post('/register', [
-    //         'name'                  => 'ren',
-    //         'password'              => 'password123',
-    //         'password_confirmation' => 'password123',
-    //     ]);
-    //     $response->assertSee('メールアドレスを入力してください');
-    // }
+    public function test_register_mail()
+    {
+        $response = $this->post('/register', [
+            'name' => 'テストユーザー',
+            'email' => '',
+            'password' => 'password123',
+            'password_confirmation' => 'password123',
+        ]);
 
-    // public function test_RegisterPassword(): void
-    // {
-    //     // パスワードが入力されていない場合、バリデーションメッセージが表示される
-    //     $response = $this->followingRedirects()->post('/register', [
-    //         'name'                  => 'ren',
-    //         'email'                 => 'test@example.com',
-    //         'password_confirmation' => 'password123',
-    //     ]);
-    //     $response->assertSee('パスワードを入力してください');
-    // }
+        $response->assertSessionHasErrors([
+            'email' => 'メールアドレスを入力してください',
+        ]);
+    }
 
-    // public function test_RegisterPassword2(): void
-    // {
-    //     // パスワードが7文字以下の場合、バリデーションメッセージが表示される
-    //     $response = $this->followingRedirects()->post('/register', [
-    //         'name'                  => 'ren',
-    //         'email'                 => 'test@example.com',
-    //         'password'              => 'pass123',
-    //         'password_confirmation' => 'pass123',
-    //     ]);
+    public function test_register_password()
+    {
+        $response = $this->post('/register', [
+            'name' => 'テストユーザー',
+            'email' => 'test@example.com',
+            'password' => '',
+            'password_confirmation' => '',
+        ]);
 
-    //     $response->assertSee('パスワードは8文字以上で入力してください');
-    // }
+        $response->assertSessionHasErrors([
+            'password' => 'パスワードを入力してください',
+        ]);
+    }
 
-    // public function test_RegisterPassword3(): void
-    // {
-    //     // パスワードが確認用パスワードと一致しない場合、バリデーションメッセージが表示される
-    //     $response = $this->followingRedirects()->post('/register', [
-    //         'name'                  => 'ren',
-    //         'email'                 => 'test@example.com',
-    //         'password'              => 'password123',
-    //         'password_confirmation' => 'password12',
-    //     ]);
+    public function test_register_password_number()
+    {
+        $response = $this->post('/register', [
+            'name' => 'テストユーザー',
+            'email' => 'test@example.com',
+            'password' => 'pass12',
+            'password_confirmation' => 'pass12',
+        ]);
 
-    //     $response->assertSee('パスワードと一致しません');
-    // }
+        $response->assertSessionHasErrors([
+            'password' => 'パスワードは8文字以上で入力してください',
+        ]);
+    }
 
-    // protected function tearDown(): void
-    // {
-    //     parent::tearDown();
-    // }
+    public function test_register_password_confirm()
+    {
+        $response = $this->post('/register', [
+            'name' => 'テストユーザー',
+            'email' => 'test@example.com',
+            'password' => 'password123',
+            'password_confirmation' => 'wrongpass',
+        ]);
+
+        $response->assertSessionHasErrors([
+            'password' => 'パスワードと一致しません',
+        ]);
+    }
+
+    public function test_register()
+    {
+        $response = $this->post('/register', [
+            'name' => 'テストユーザー',
+            'email' => 'test@example.com',
+            'password' => 'password123',
+            'password_confirmation' => 'password123',
+        ]);
+
+        $this->assertDatabaseHas('users', [
+            'email' => 'test@example.com',
+        ]);
+
+        $this->assertAuthenticated();
+        $response->assertRedirect('/mypage/profile'); 
+    }
 }
