@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Profile;
-use App\Models\Address;
+use App\Models\SoldItem;
 use App\Models\Item;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\ProfileRequest;
@@ -29,22 +30,34 @@ class ProfileController extends Controller
     public function update(ProfileRequest $request)
     {
         $user = Auth::user();
-        $user->name = $request->input('name');
-        $user->save;
-
         if ($request->hasFile('image')) {
-            // 画像を storage/app/public/productsに保存し、パスを取得
             $path = Storage::disk('public')->putFile('profiles', $request->file('image'));
         }
-        $profileData = Profile::updateOrCreate(
-            ['user_id' => $user->id],
-            [
-                'image'    => $path,
-                'postcode' => $request->input('postcode'),
-                'address'  => $request->input('address'),
-                'building' => $request->input('building')
-            ]
-        );
+
+        $profile = Profile::where('user_id', $user->id)->first();
+        if ($profile){
+            $profile = Profile::update(
+                ['user_id' => $user->id],
+                [
+                    'image'    => $path,
+                    'postcode' => $request->input('postcode'),
+                    'address'  => $request->input('address'),
+                    'building' => $request->input('building')
+                ]
+            );
+        } else {
+            Profile::create([
+                'user_id' => Auth::id(),
+                'image' => $path,
+                'postcode' => $request->postcode,
+                'address' => $request->address,
+                'building' => $request->building
+            ]);
+        }
+
+        User::find(Auth::id())->update([
+            'name' => $request->name
+        ]);
         return redirect('/');
     }
 
@@ -53,7 +66,7 @@ class ProfileController extends Controller
         $user    = Auth::user();
         $profile = Profile::where('user_id', $user->id)->first();
         $item    = Item::with(['condition'])->find($item_id);
-        $address = Address::where('user_id', $user->id)->first();
+        $address = SoldItem::where('user_id', $user->id)->first();
         return view('address', compact('user', 'address', 'item', 'profile'));
     }
 
@@ -69,8 +82,10 @@ class ProfileController extends Controller
         return redirect('/mypage/profile');
     }
 
-    public function remail(Request $request) {
+    public function remail(Request $request)
+    {
         $request->user()->sendEmailVerificationNotification();
 
-        return back()->with('message', 'Verification link sent!');}
+        return back()->with('message', 'Verification link sent!');
+    }
 }

@@ -11,13 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('addresses', function (Blueprint $table) {
+        Schema::create('sold_items', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->unique()->cascadeOnDelete();
+            $table->foreignId('buyer_id')->constrained('users')->cascadeOnDelete();
+            $table->foreignId('seller_id')->constrained('users')->cascadeOnDelete();
             $table->foreignId('item_id')->constrained()->unique()->cascadeOnDelete();
             $table->string('postcode', 8);
             $table->string('address');
             $table->string('building');
+            $table->enum('status', ['progress', 'purchase_completed', 'completed'])->default('progress');
             $table->timestamps();
         });
     }
@@ -27,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('addresses');
+        Schema::dropIfExists('sold_items');
     }
 };

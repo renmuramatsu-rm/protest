@@ -37,7 +37,6 @@
                 <div class="sell-form__category">
                     @foreach($categories as $category)
                     <label class="category__item-label"><input type="checkbox" class="category__item" name="category[]" value="{{ $category->id }}"><span class="category__item-box">{{ $category->category }}</span></label>
-
                     @endforeach
                 </div>
                 <div class="form__error">

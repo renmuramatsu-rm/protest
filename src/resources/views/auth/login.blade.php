@@ -9,7 +9,7 @@
     <div class="login-form__heading">
         <h2>ログイン</h2>
     </div>
-    <form class="form" action="/login" method="post">
+    <form class="form" action="/login" method="post" novalidate>
         @csrf
         <div class="form__group">
             <div class="form__group-title">
@@ -42,7 +42,7 @@
             </div>
         </div>
         <div class="form__button">
-            <button class="form__button-submit" type="submit">ログインする</button>
+            <button class="form__button-submit" type="submit" formnovalidate>ログインする</button>
         </div>
     </form>
     <div class="register__link">

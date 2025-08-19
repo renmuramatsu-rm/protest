@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-<form class="form" action="{{ route('soldout', $item->id) }}" method="POST">
+<form class="form" action="{{ route('soldOut', $item->id) }}" method="POST">
     @csrf
     <div class="purchase-form">
         <div class="purchase-form__left">
@@ -23,7 +23,7 @@
         </div>
         <div class="purchase-form__method">
             <label class="show-form__method-title">
-                支払方法
+                支払い方法
             </label>
             <select name="purchase_method">
                 <option hidden>選択してください</option>
@@ -39,16 +39,13 @@
                 <a class="purchase-form__delivery-change" href="{{ route('address', $item->id) }}">変更する</a>
             </div>
             <div>
-                <p class="show-form__item-name">
-                    〒 {{ $address->postcode ?? $profile->postcode}}
-                </p>
-                <p class="show-form__item-name">
-                    {{ ($address->address ?? $profile->address) . ' ' . ($address->building ?? $profile->building) }}
-                </p>
+                <input class="show-form__item-name" name="postcode" value="{{ $address->postcode ?? $profile->postcode}}" readonly>
+                <input class="show-form__item-name" name="address" value="{{ ($address->address ?? $profile->address)}}" readonly>
+                <input class="show-form__item-name" name="building" value=" {{ ($address->building ?? $profile->building) }}" readonly>
             </div>
         </div>
     </div>
-    <div class="purchase-form__right">
+    <div class=" purchase-form__right">
         <div class="purchase-form__item">
             <div class="purchase-form__item-box">
                 <label class="purchase-form__label">
@@ -60,7 +57,7 @@
             </div>
             <div class="purchase-form__item-box">
                 <label class="purchase-form__label">
-                    支払方法
+                    支払い方法
                 </label>
                 <p class="show-form__item-price" id="box"> </p>
                 <script>
@@ -73,9 +70,15 @@
                 </script>
             </div>
         </div>
+        @if ($item->sold())
+        <button class="btn disable" disabled>売り切れました</button>
+        @elseif ($item->mine())
+        <button class="btn disable" disabled>購入できません</button>
+        @else
         <div class="purchase-form__submit">
             <button class="purchase-form__submit-a" type="submit">購入する</button>
         </div>
+        @endif
     </div>
 </form>
 @endsection

@@ -8,11 +8,13 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\AddressController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
+use App\Http\Controllers\ChatController;
 
 
-Route::get('/',      [ItemController::class, 'index']);
-Route::get('/search', [ItemController::class, 'search']);
-Route::get('/login', [ProfileController::class, 'login'])->name('login');
+Route::get('/',               [ItemController::class, 'index'])    ->name('items.list');
+Route::get('/item',           [ItemController::class, 'search']);
+Route::get('/login',          [ProfileController::class, 'login']) ->name('login');
+Route::get('/item/{item_id}', [ItemController::class, 'show'])     ->name('show');
 
 // メール認証
 Route::get('/email/verify', function () {
@@ -29,24 +31,30 @@ Route::post('/email/verification-notification', function (Request $request) {
 
 Route::middleware('auth', 'verified')->group(function () {
     // マイページ
-    Route::get('/mypage',           [ItemController::class, 'mypage'])->name('mypage');
-    Route::get('/mypage/profile',   [ProfileController::class, 'show'])->name('profile');
+    Route::get('/mypage',           [ItemController::class, 'mypage'])    ->name('mypage');
+    Route::get('/mypage/profile',   [ProfileController::class, 'show'])   ->name('profile');
     Route::post('/mypage/profile',  [ProfileController::class, 'store']);
     Route::patch('/mypage/profile', [ProfileController::class, 'update']);
 
     // 商品ページ
-    Route::get('/item/{item_id}',           [ItemController::class, 'show'])->name('show');
-    Route::post('/item/{item_id}/like',     [LikeController::class, 'store'])->name('like');
-    Route::delete('/item/{item_id}/unlike', [LikeController::class, 'destroy'])->name('unlike');
-    Route::post('/item/{item_id}/comment', [CommentController::class, 'store'])->name('comment.store');
+    Route::post('/item/{item_id}/like',     [LikeController::class, 'store'])    ->name('like');
+    Route::delete('/item/{item_id}/unlike', [LikeController::class, 'destroy'])  ->name('unlike');
+    Route::post('/item/{item_id}/comment',  [CommentController::class, 'store']) ->name('comment.store');
+    Route::post('/item/{item_id}',          [ItemController::class, 'complete']) ->name('complete');
+    Route::post('/review/{item_id}',                  [ItemController::class, 'review'])->name('review');
 
     // 出品ページ
     Route::get('/sell',  [ItemController::class, 'getsell']);
     Route::post('/sell', [ItemController::class, 'postsell']);
 
     // 購入ページ
-    Route::get('/purchase/{item_id}',         [ItemController::class, 'purchase'])->name('purchase');
-    Route::get('/purchase/address/{item_id}', [ProfileController::class, 'edit'])->name('address');
-    Route::post('/purchase/address/{item_id}', [AddressController::class, 'create'])->name('address.create');
-    Route::post('/purchase/soldout/{item_id}',         [ItemController::class, 'soldout'])->name('soldout');
+    Route::get('/purchase/{item_id}',          [ItemController::class, 'purchase'])  ->name('purchase');
+    Route::get('/purchase/address/{item_id}',  [ProfileController::class, 'edit'])   ->name('address');
+    Route::post('/purchase/address/{item_id}', [AddressController::class, 'create']) ->name('address.create');
+    Route::post('/purchase/soldOut/{item_id}', [ItemController::class, 'soldOut'])   ->name('soldOut');
+
+    // チャット機能
+    Route::post('/item/chat/{item_id}',  [ChatController::class, 'store'])->name('chat.store');
+    Route::patch('/item/chat/update',  [ChatController::class, 'update'])->name('chat.update');
+    Route::delete('/item/chat/delete',  [ChatController::class, 'delete'])->name('chat.delete');
 });

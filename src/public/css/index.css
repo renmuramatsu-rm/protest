@@ -20,6 +20,7 @@
     border: none;
     background: none;
     margin-right: 30px;
+    text-decoration: none;
 }
 
 .toppage-list__button-recommend__login {
@@ -30,6 +31,7 @@
     border: none;
     background: none;
     margin-right: 30px;
+    text-decoration: none;
 }
 
 .toppage-list__button-mylist__login {

@@ -8,15 +8,17 @@
     <title>COACHTECH</title>
     <link rel="stylesheet" href="{{ asset('css/sanitize.css') }}">
     <link rel="stylesheet" href="{{ asset('css/authcommon.css') }}">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     @yield('css')
 </head>
 
 <body>
     <header class="header">
         <div class="header__inner">
-                <a class="header__logo" href="/">
-                    COACHTECH
-                </a>
+            <a class="header__logo" href="/">
+                <img src="{{ asset('storage/coachtech.svg') }}" alt="coachtech" class="coachtech__img">
+            </a>
         </div>
     </header>
 

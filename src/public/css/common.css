@@ -78,3 +78,25 @@
     font-size: 16px;
     cursor: pointer;
 }
+
+@media (min-width: 768px) and (max-width: 850px) {
+    .header__inner {
+        width: 25vw;
+    }
+
+    .header-nav__button-logout {
+        width: 15vw;
+    }
+
+    .header-nav__button-login {
+        width: 15vw;
+    }
+
+    .header-nav__button-mypage {
+        width: 15vw;
+    }
+
+    .header-nav__button-sell {
+        width: 15vw;
+    }
+}

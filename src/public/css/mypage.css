@@ -1,147 +1,361 @@
-.mypage-list {
+.mypage-profile__content {
+    margin: 24px auto 12px;
+    height: auto;
     display: flex;
     align-items: center;
-    justify-content: left;
+    justify-content: space-between;
+}
+
+.mypage-profile__user {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.mypage-profile__img {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.mypage-profile__user-name p {
+    margin: 0;
+    font-weight: 700;
+    font-size: 20px;
+    color: #222;
+}
+
+.fa-star {
+    color: #D9D9D9;
+}
+
+.fa-star.checked {
+    color: #ffd84d;
+}
+
+.mypage-item__button-profile {
+    display: inline-block;
+    color: #ff5555;
+    background: #fff;
+    border: 1.5px solid #ff5555;
+    padding: 8px 14px;
+    border-radius: 8px;
+    text-decoration: none;
+}
+
+.mypage-list {
+    width: 90%;
+    display: flex;
+    align-items: baseline;
+    gap: 28px;
     list-style: none;
+    margin: 10px auto 0;
+    padding: 0 0 10px;
     border-bottom: 2px solid #5f5f5f;
-    margin-bottom: 10px;
 }
 
-.mypage-list__item {
-    margin-left: 30px;
-
+.mypage-list__item{
+    margin: 10px 30px;
 }
 
-.mypage-list__button-buy {
-    color: #5F5F5F;
+.mypage-list__button-listing,
+.mypage-list__button-buy,
+.mypage-list__button-progress {
+    background: none;
+    border: none;
+    text-decoration: none;
+    cursor: pointer;
     font-weight: 700;
     font-size: 24px;
-    line-height: 100%;
-    border: none;
-    background: none;
-    margin-right: 30px;
+    line-height: 1;
+    color: #7a7a7a;
 }
 
-.mypage-list__button-listing {
-    color: #FF0000;
+.mypage-list__button-listing.is-active,
+.mypage-list__button-buy.is-active,
+.mypage-list__button-progress.is-active {
+    color: #ff0000;
+}
+
+.totalMessageCount {
+    display: inline-block;
+    margin-left: 10px;
+    background: #ff2d2d;
+    color: #fff;
     font-weight: 700;
-    font-size: 24px;
-    line-height: 100%;
-    border: none;
-    background: none;
-    margin-right: 30px;
+    font-size: 16px;
+    line-height: 1;
+    padding: 4px 10px;
+    border-radius: 12px;
 }
 
 .mypage-item {
+    width: min(1100px, 90%);
+    margin: 18px auto 40px;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-    width: 100%;
-    justify-content: center;
-    max-width: 900px;
-    margin: 0 auto;
+    gap: 28px;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
 }
 
 .mypage-item_show {
     position: relative;
 }
 
-.sold-out {
-    position: absolute;
-    color: #FF0000;
-    top: 25%;
-    left: 25%;
-    font-weight: 700;
-    font-size: 30px;
-    border: 2px solid #FF0000;
-    background-color: #fff;
-    transform: rotate(-10deg);
-}
-
 .mypage-item__content {
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, .08);
     overflow: hidden;
     text-align: center;
-    max-width: 280px;
     width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    max-width: 100%;
+    padding-bottom: 12px;
 }
 
 .mypage-item__img {
     width: 100%;
-    height: 180px;
-    border-bottom: 1px solid #eee;
+    height: 210px;
     object-fit: cover;
     display: block;
 }
 
 .mypage-item__name {
-    margin: 10px 0;
+    margin: 10px 12px 4px;
     font-size: 16px;
     color: #333;
     white-space: nowrap;
+    overflow: hidden;
     text-overflow: ellipsis;
 }
 
-svg.w-5.h-5{
-    width: 30px;
-    height: 30px;
-}
-
-.pagination .page-item {
-    display: inline-block;
-    margin: 0 auto;
+.messageCount {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 2;
+    display: inline-flex;
     align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: #ff2d2d;
+    color: #fff;
+    font-weight: 700;
+    font-size: 12px;
+    box-shadow: 0 0 0 2px #fff;
+    pointer-events: none;
 }
 
-.pagination .page-link {
-    padding: 8px 12px;
-    background: #F5C800;
-    color: white;
-    border-radius: 5px;
-    text-decoration: none;
+.sold-out {
+    position: absolute;
+    z-index: 2;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-10deg);
+    padding: 12px 22px;
+    font-weight: 800;
+    font-size: 28px;
+    color: #ff0000;
+    background: #fff;
+    border: 3px solid #ff0000;
+    border-radius: 6px;
 }
 
+    .mypage-item {
+        gap: 18px;
+    }
+
+    .messageCount {
+        width: 20px;
+        height: 20px;
+        font-size: 11px;
+    }
 
 .mypage-profile__content {
+    margin: 24px auto 10px;
+    padding: 4px 0;
     display: flex;
-    justify-content: space-between;
-    max-width: 1230px;
-    width: 80%;
-    height: 150px;
-    margin: 0 auto;
     align-items: center;
-    padding-top: 30px 0px;
+    justify-content: space-between;
 }
 
-.mypage-profile__content-item {
-    width: 50%;
+.mypage-profile__user {
     display: flex;
-    justify-content: center;
     align-items: center;
+    gap: 18px;
 }
 
 .mypage-profile__img {
-    width: 70px;
-    height: 70px;
-    align-items: center;
-    text-align: center;
-    margin: 0px 20px;
+    width: 84px;
+    height: 84px;
+    border-radius: 50%;
+    object-fit: cover;
 }
 
-.mypage-profile__name {
-    font-weight: 700;
-    font-size: 36px;
-    margin: 0 30px;
+.modal-form__review {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin: 0;
+    border: 0;
+}
+
+.mypage-profile__user-name p {
+    margin: 0;
+    font-weight: 800;
+    font-size: 22px;
+    color: #111;
 }
 
 .mypage-item__button-profile {
-    color: #FF5555;
-    background-color: white;
-    border: 2px solid #FF5555;
-    padding: 5px 15px;
-
+    display: inline-block;
+    padding: 10px 18px;
+    border-radius: 10px;
+    border: 1.6px solid #ff6b6b;
+    color: #ff6b6b;
+    background: #fff;
+    text-decoration: none;
+    font-weight: 600;
 }
+
+.totalMessageCount {
+    margin-left: 10px;
+    padding: 3px 9px;
+    font-size: 14px;
+    font-weight: 800;
+    line-height: 1;
+    color: #fff;
+    background: #ff2d2d;
+    border-radius: 12px;
+    vertical-align: middle;
+    transform: translateY(-1px);
+}
+
+.mypage-item {
+    width:90%;
+    margin: 18px auto 40px;
+    display: grid;
+    gap: 28px;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+}
+
+.mypage-item__content {
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, .08);
+    overflow: hidden;
+    text-align: center;
+    width: 100%;
+    padding-bottom: 12px;
+}
+
+.mypage-item__img {
+    height: 210px;
+    object-fit: cover;
+}
+
+.messageCount {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 2;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #ff2d2d;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    box-shadow: 0 0 0 2px #fff;
+    pointer-events: none;
+}
+
+.sold-out {
+    position: absolute;
+    z-index: 2;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-10deg);
+    padding: 10px 18px;
+    font-weight: 800;
+    font-size: 26px;
+    color: #ff0000;
+    background: #fff;
+    border: 3px solid #ff0000;
+    border-radius: 6px;
+}
+
+.mypage-profile__content {
+    width: 90%;
+    margin: 24px auto 10px;
+    padding: 4px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.mypage-profile__user {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.mypage-profile__img {
+    width: 84px;
+    height: 84px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.modal-form__review {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin: 0;
+    border: 0;
+}
+
+.mypage-item__button-profile {
+    display: inline-block;
+    padding: 10px 18px;
+    border-radius: 10px;
+    border: 1.6px solid #ff6b6b;
+    color: #ff6b6b;
+    background: #fff;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.totalMessageCount {
+    margin-left: 10px;
+    padding: 3px 9px;
+    font-size: 14px;
+    font-weight: 800;
+    line-height: 1;
+    color: #fff;
+    background: #ff2d2d;
+    border-radius: 12px;
+    vertical-align: middle;
+    transform: translateY(-1px);
+}
+
+.mypage-item__content {
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, .08);
+    overflow: hidden;
+    text-align: center;
+    width: 100%;
+    padding-bottom: 12px;
+}
+
+.mypage-item__img {
+    height: 210px;
+    object-fit: cover;
+}
+

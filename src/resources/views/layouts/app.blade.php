@@ -8,6 +8,8 @@
     <title>COACHTECH</title>
     <link rel="stylesheet" href="{{ asset('css/sanitize.css') }}">
     <link rel="stylesheet" href="{{ asset('css/common.css') }}">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     @yield('css')
 </head>
 
@@ -19,8 +21,8 @@
                     <img src="{{ asset('storage/coachtech.svg') }}" alt="coachtech" class="coachtech__img">
                 </a>
                 <div class="header-search">
-                    <form action="/search" method="get">
-                        <input type="text" name="keyword" value="" placeholder="なにをお探しですか？" />
+                    <form action="/" method="get">
+                        <input type="text" name="search" value="" placeholder="なにをお探しですか？">
                     </form>
                 </div>
                 <nav>

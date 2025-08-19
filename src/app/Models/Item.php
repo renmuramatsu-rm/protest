@@ -3,13 +3,14 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Item extends Model
 {
     protected $table = 'items';
     public $timestamps = false;
 
-    protected $fillable = ['user_id', 'purchase_user_id', 'purchase_method','name', 'brandname', 'price', 'description', 'image', 'condition_id'];
+    protected $fillable = ['user_id', 'purchase_method','name', 'brandname', 'price', 'description', 'image', 'condition_id'];
 
     public function like_users()
     {
@@ -40,13 +41,28 @@ class Item extends Model
         return $this->belongsTo(Condition::class);
     }
 
-    public function purchases()
-    {
-        return $this->belongsTo(User::class,'purchase_user_id');
-    }
-
     public function sells()
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function sold()
+    {
+        return SoldItem::where('item_id', $this->id)->exists();
+    }
+
+    public function sold_item()
+    {
+        return $this->hasOne(SoldItem::class, 'item_id');
+    }
+
+    public function mine()
+    {
+        return $this->user_id == Auth::id();
+    }
+
+    public static function scopeItem($query, $item_name)
+    {
+        return $query->where('name', 'like', '%' . $item_name . '%');
     }
 }
