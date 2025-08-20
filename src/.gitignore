@@ -9,6 +9,7 @@ Homestead.yaml
 Homestead.json
 /storage/pail
 /vendor
+.env
 .env.backup
 .env.production
 .phpactor.json
@@ -23,8 +24,8 @@ yarn-error.log
 /.nova
 /.vscode
 /.zed
-docker/mysql/data/
 
 !storage/app/public/
 !storage/app/public/**
+
 
