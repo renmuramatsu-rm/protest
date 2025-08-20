@@ -1,7 +1,7 @@
 【環境構築】
 1. Dockerビルド
 
-① git clone git@github.com:estra-inc/confirmation-test-contact-form.git
+① git clone git@github.com:renmuramatsu-rm/protest.git
 ② DockerDesktopアプリを立ち上げる
 ③ docker-compose up -d --build## 
 
