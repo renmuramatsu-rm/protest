@@ -41,7 +41,7 @@
 
 【ER図】
 
-![image](https://github.com/user-attachments/assets/a08ec5e0-718a-4ede-8721-fc8139616ca0)
+<img width="1214" height="625" alt="image" src="https://github.com/user-attachments/assets/5438ca8d-183b-4718-a4db-14bbdbd7f553" />
 
 
 
