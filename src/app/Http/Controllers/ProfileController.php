@@ -36,15 +36,14 @@ class ProfileController extends Controller
 
         $profile = Profile::where('user_id', $user->id)->first();
         if ($profile){
-            $profile = Profile::update(
-                ['user_id' => $user->id],
-                [
+            $profile ->fill([
                     'image'    => $path,
                     'postcode' => $request->input('postcode'),
                     'address'  => $request->input('address'),
                     'building' => $request->input('building')
                 ]
             );
+            $profile->save();
         } else {
             Profile::create([
                 'user_id' => Auth::id(),

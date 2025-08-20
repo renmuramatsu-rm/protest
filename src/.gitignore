@@ -23,6 +23,7 @@ yarn-error.log
 /.nova
 /.vscode
 /.zed
+docker/mysql/data/
 
 !storage/app/public/
 !storage/app/public/**
